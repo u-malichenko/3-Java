@@ -30,6 +30,15 @@ public class MainDz {
         System.out.println(aL);
         System.out.println(sob.toArrayList(strings)+ " - ArrayList");
 
+        System.out.println("Конец 2го задания.");
+
+        Box<Apple> appleBox1 = new Box<>();
+        appleBox1.addFruit(5);
+
+        Box<Orange> orangeBox1 = new Box<>();
+        orangeBox1.addFruit(7);
+
+
     }
 }
 
