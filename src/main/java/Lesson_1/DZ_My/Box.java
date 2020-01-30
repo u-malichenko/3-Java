@@ -1,4 +1,4 @@
-package Lesson_1.DZ;
+package Lesson_1.DZ_My;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class Box<T extends Fruit> {
     private ArrayList<T> fruitList; //c. Для хранения фруктов внутри коробки можете использовать ArrayList;
 
     public Box() {
-        this.fruitList = new ArrayList<>();
+        fruitList = new ArrayList<>();
     }
 
     /**
@@ -17,11 +17,13 @@ public class Box<T extends Fruit> {
      * @return
      */
     public float getWeight(){
-        float weight = 0;
-        for (Fruit fruit: fruitList) {
-            weight += fruit.getWeight();
-        }
-        return weight;
+        if(fruitList.size()==0) return 0.0f;
+        return fruitList.get(0).getWeight() * fruitList.size();
+//        float weight = 0;
+//        for (Fruit fruit: fruitList) {
+//            weight += fruit.getWeight();
+//        }
+//        return weight;
     }
 
     /**
@@ -39,12 +41,15 @@ public class Box<T extends Fruit> {
      * соответственно в текущей коробке фруктов не остается,
      * а в другую перекидываются объекты, которые были в этой коробке;
      */
-    public Box<T> changeBox() {
-        Box<T> newBox = new Box<T>();
-        //newBox.fruitList.addAll(this.fruitList);
-        newBox.fruitList = (ArrayList<T>) this.fruitList.clone();
+    public void changeBox(Box<? super T> another){
+        another.fruitList.addAll(this.fruitList);
         this.fruitList.clear();
-        return newBox;
+//    public Box<T> changeBox() {
+//        Box<T> newBox = new Box<T>();
+//        //newBox.fruitList.addAll(this.fruitList);
+//        newBox.fruitList = (ArrayList<T>) this.fruitList.clone();
+//        this.fruitList.clear();
+//        return newBox;
     }
 
     /**

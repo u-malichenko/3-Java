@@ -1,13 +1,14 @@
 package Lesson_1;
 
-public class Test {
-}
+//public class Test {
+//}
 
 //1Какой будет результат выполнения следующего кода
 //
 //public class Test {
 //    public static void main(String[]args){
 //        System.out.println(1%2==1);
+//      //  System.out.println(9%2);
 //    }
 //}
 
@@ -15,13 +16,6 @@ public class Test {
 //        b)false
 //        c)1
 //        d)Ошибка компиляции
-
-
-
-
-
-
-
 
 
 //  2 Какой будет результат выполнения следующего кода
@@ -52,38 +46,23 @@ public class Test {
 //
 
 
-
-
-
-
-
-
-
-
-
-
 // 3 Какой будет результат выполнения следующего кода
 //public class Test {
 //    public static void main(String[] args) {
-//         public static void main(String[] args) {
 //        {
-//        int i = 20;
+//            int i = 20;
 //        }
+//
 //        int i = 15;
 //
 //        System.out.println(i);
-//        }
 //    }
 //}
+
 
 //        а)  15
 //        b)  20
 //        c) Ошибка компиляции
-
-
-
-
-
 
 
 
@@ -106,6 +85,15 @@ public class Test {
 //        d)  3
 
 
+
+
+
+
+
+
+
+
+
 //        5 Какой будет результат выполнения следующего кода
 //public class Test {
 //    public static void main(String[] args) {
@@ -119,6 +107,9 @@ public class Test {
 //        b)  12
 //        c) Ошибка при компиляции
 //        d) Ошибка при выполнении
+
+
+
 
 
 
@@ -142,12 +133,6 @@ public class Test {
 //        d)  Ошибка компиляции
 
 
-
-
-
-
-
-
 //
 //        7 Какой будет результат выполнения следующего кода
 //public class Test {
@@ -165,14 +150,6 @@ public class Test {
 //        c)  Ошибка компиляции
 
 
-
-
-
-
-
-
-
-
 //        8 Какой будет результат выполнения следующего кода
 //
 //        public static void main(String[] args) {
@@ -187,15 +164,6 @@ public class Test {
 //
 
 
-
-
-
-
-
-
-
-
-
 //        9 Какой будет результат выполнения следующего кода
 //
 //         public static void main(String[] args) {
@@ -208,17 +176,6 @@ public class Test {
 //        а)  400my var:
 //        b)  my var 400
 //        c)  Ошибка компиляции
-
-
-
-
-
-
-
-
-
-
-
 
 
 //        10 Какой будет результат выполнения следующего кода

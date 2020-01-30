@@ -41,13 +41,13 @@ public class Main {
         // x = x + box2.getObj();
 
 
-        Integer inums[] = {1,2,3,4,5};
-        Stats<Integer> iob = new Stats<>(inums);
-        double res1 = iob.avg();
-
-        Double dnums[] = {1.0,2.0,3.0,4.0,5.0};
-        Stats<Double> dob = new Stats<>(dnums);
-        double res2 = dob.avg();
+//        Integer inums[] = {1,2,3,4,5};
+//        Stats<Integer> iob = new Stats<>(inums);
+//        double res1 = iob.avg();
+//
+//        Double dnums[] = {1.0,2.0,3.0,4.0,5.0};
+//        Stats<Double> dob = new Stats<>(dnums);
+//        double res2 = dob.avg();
 
         Ttt[] tt = {};
 

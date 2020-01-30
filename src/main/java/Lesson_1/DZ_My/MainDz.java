@@ -1,4 +1,4 @@
-package Lesson_1.DZ;
+package Lesson_1.DZ_My;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,14 +45,17 @@ public class MainDz {
         }
         System.out.println(orangeBox1.getWeight()+" - orangeBox1.getWeight");
 
+        Box<Orange> orangeBox2 = new Box<>();
+        System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight");
+
         System.out.println("Внутри класса коробка сделать метод compare, который позволяет сравнить текущую коробку с той, которую подадут в compare в качестве параметра");
         boolean compare = orangeBox1.compare(appleBox1);
         System.out.println(compare+" - orangeBox1.compare(appleBox1)");
 
 
         System.out.println("Написать метод, который позволяет пересыпать фрукты из текущей коробки в другую коробку orangeBox2");
-        Box<Orange> orangeBox2 = orangeBox1.changeBox();
-        System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight");
+        orangeBox1.changeBox(orangeBox2);
+        System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight new");
 
         orangeBox2.add(new Orange());
         System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight after add 1 fruit");

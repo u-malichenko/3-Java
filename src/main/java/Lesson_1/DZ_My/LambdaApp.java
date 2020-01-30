@@ -1,4 +1,4 @@
-package Lesson_1.DZ;
+package Lesson_1.DZ_My;
 
 //public class LambdaApp {
 //
@@ -33,24 +33,27 @@ public class LambdaApp {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Введите целое число X :");
-        int numx = sc.nextInt();
+        double numx = sc.nextDouble();
 
         System.out.println("Введите целое число Y :");
-        int numy = sc.nextInt();
+        double numy = sc.nextDouble();
 
         Operationable operation;
         boolean end = false;
 
         while (!end) {
-            int result = 0;
+            double result = 0.0;
             System.out.println("Введите оператор + - * / :");
             Scanner scn = new Scanner(System.in);
             String operator = scn.nextLine();
 
             switch (operator) {
                 case ("+"): {
-                    operation = (x, y) -> x + y; //в скобках сигнатура лямды а после стрелки - тело лямды
+                    operation = (x, y) -> {//в скобках сигнатура лямды а после стрелки - тело лямды
+                        return x + y;
+                    };
                     result = operation.calculate(numx, numy);
+
                     System.out.println(result);
                     end = true;
                     break;
@@ -70,10 +73,14 @@ public class LambdaApp {
                     break;
                 }
                 case ("/"): {
-                    operation = (x, y) -> x / y;
-                    result = operation.calculate(numx, numy);
-                    System.out.println(result);
-                    end = true;
+                    try {
+                        operation = (x, y) -> x / y;
+                        result = operation.calculate(numx, numy);
+                        System.out.println(result);
+                        end = true;
+                    } catch (ArithmeticException err){
+                        System.out.println("Не можем делить на 0");
+                    }
                     break;
                 }
             }
@@ -82,6 +89,6 @@ public class LambdaApp {
 }
 
 interface Operationable {
-    int calculate(int x, int y);
+    double calculate(double x, double y);
 
 }
