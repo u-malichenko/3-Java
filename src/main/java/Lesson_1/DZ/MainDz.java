@@ -1,10 +1,8 @@
 package Lesson_1.DZ;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * 2. Написать метод, который преобразует массив в ArrayList;
- */
 public class MainDz {
     public static void main(String[] args) {
         System.out.println("1. Написать метод, который меняет два элемента массива местами.(массив может быть любого ссылочного типа);");
@@ -27,7 +25,10 @@ public class MainDz {
 
         System.out.println("Конец 1го задания.");
 
-
+        ArrayList<Double> aL = dob.toArrayList(dnums);
+        aL.add(6.0);
+        System.out.println(aL);
+        System.out.println(sob.toArrayList(strings)+ " - ArrayList");
 
     }
 }
@@ -61,14 +62,12 @@ class MyObj<T> { //описываем ограничения сверху - exte
         }
     }
 
-    public double avg() {
-        double sum = 0.0;
-
-//        for (int i = 0; i < nums.length; i++) {
-//            sum += nums[i].doubleValue();
-//        }
-
-        return sum / array.length;
+    /**
+     * 2. Написать метод, который преобразует массив в ArrayList;
+     * @param stringArray
+     * @return
+     */
+    public ArrayList<T> toArrayList(T[] stringArray) {
+        return new ArrayList<T>(Arrays.asList(stringArray));
     }
-
 }
