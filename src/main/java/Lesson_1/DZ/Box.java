@@ -6,10 +6,10 @@ import java.util.ArrayList;
  * b. Класс Box в который можно складывать фрукты, коробки условно сортируются по типу фрукта, поэтому в одну коробку нельзя сложить и яблоки, и апельсины;
  */
 public class Box<T extends Fruit> {
-    private ArrayList<T> arrayList; //c. Для хранения фруктов внутри коробки можете использовать ArrayList;
+    private ArrayList<T> fruitList; //c. Для хранения фруктов внутри коробки можете использовать ArrayList;
 
-    public Box() { //ArrayList<T> arrayList
-        this.arrayList = new ArrayList<>(); //arrayList
+    public Box() {
+        this.fruitList = new ArrayList<>();
     }
 
     /**
@@ -17,9 +17,9 @@ public class Box<T extends Fruit> {
      * @return
      */
     public float getWeight(){
-        float amountFruitInBox = this.arrayList.size();
-        float weightOneFruit = this.arrayList.get(0).getWeightOneFruit();
-        return weightOneFruit * amountFruitInBox;
+        float numFruit = this.fruitList.size();
+        float weightOneFruit = this.fruitList.get(0).getWeight();
+        return weightOneFruit * numFruit;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Box<T extends Fruit> {
      * которую подадут в compare в качестве параметра, true - если их веса равны, false в противном случае
      * (коробки с яблоками мы можем сравнивать с коробками с апельсинами);
      */
-    public boolean compare(Box<? super Fruit> another) { //ограничения снизу накладываем в методе
+    public boolean compare(Box<?> another) { //ограничения снизу накладываем в методе super Fruit
         return Math.abs(this.getWeight() - another.getWeight()) < 0.0001;
     }
 
@@ -39,23 +39,16 @@ public class Box<T extends Fruit> {
      */
     public Box<T> changeBox() {
         Box<T> newBox = new Box<T>();
-        newBox.arrayList.addAll(this.arrayList);
-        //newBox.arrayList = (ArrayList<T>) this.arrayList.clone();
-        this.arrayList.clear();
+        //newBox.fruitList.addAll(this.fruitList);
+        newBox.fruitList = (ArrayList<T>) this.fruitList.clone();
+        this.fruitList.clear();
         return newBox;
     }
 
     /**
      *g. Не забываем про метод добавления фрукта в коробку.
      */
-    public void addFruit(int num) {
-        for (int i = 0; i < num; i++) {
-
-            new Apple();
-
-            T newFruit = new Fruit(T);
-            this.arrayList.add(newFruit);
-        }
-
+    public void add(T fruit) {
+            fruitList.add(fruit);
     }
 }

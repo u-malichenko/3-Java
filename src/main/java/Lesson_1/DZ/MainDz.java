@@ -33,13 +33,35 @@ public class MainDz {
         System.out.println("Конец 2го задания.");
 
         Box<Apple> appleBox1 = new Box<>();
-        appleBox1.addFruit(5);
+        for (int i = 0; i < 5; i++) {
+            appleBox1.add(new Apple());
+        }
+        System.out.println("Сделать метод getWeight() который высчитывает вес коробки");
+        System.out.println(appleBox1.getWeight()+" - appleBox1.getWeight");
 
         Box<Orange> orangeBox1 = new Box<>();
-        orangeBox1.addFruit(7);
+        for (int i = 0; i < 7; i++) {
+            orangeBox1.add(new Orange());
+        }
+        System.out.println(orangeBox1.getWeight()+" - orangeBox1.getWeight");
+
+        System.out.println("Внутри класса коробка сделать метод compare, который позволяет сравнить текущую коробку с той, которую подадут в compare в качестве параметра");
+        boolean compare = orangeBox1.compare(appleBox1);
+        System.out.println(compare+" - orangeBox1.compare(appleBox1)");
+
+
+        System.out.println("Написать метод, который позволяет пересыпать фрукты из текущей коробки в другую коробку orangeBox2");
+        Box<Orange> orangeBox2 = orangeBox1.changeBox();
+        System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight");
+
+        orangeBox2.add(new Orange());
+        System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight after add 1 fruit");
+
+        System.out.println(orangeBox1.compare(orangeBox2)+" - orangeBox1.compare(orangeBox2)");
 
 
     }
+
 }
 
 class MyObj<T> { //описываем ограничения сверху - extends Number

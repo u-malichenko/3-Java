@@ -3,31 +3,31 @@ package Lesson_1.DZ;
 /**
  * Есть классы Fruit -> Apple, Orange;(больше фруктов не надо)
  */
-public class Fruit {
-    private float weightOneFruit; //вес одного фрукта
+public abstract class Fruit{
 
-
-    public Fruit(float v) {
-        this.weightOneFruit = v;
-    }
-
-    public float getWeightOneFruit() {
-        return weightOneFruit;
-    }
+    public abstract float getWeight();
 }
 
 class Apple extends Fruit {
+    private final  float WIGHT = 1.0f; //вес одного фрукта
 
     public Apple() {
-        super(1.0f);
     }
 
+    @Override
+    public float getWeight() {
+        return WIGHT;
+    }
 }
 
 class Orange  extends Fruit{
+    private final  float WIGHT = 1.5f; //вес одного фрукта
 
     public Orange() {
-        super(1.5f);
     }
 
+    @Override
+    public float getWeight() {
+        return WIGHT;
+    }
 }
