@@ -56,6 +56,7 @@ public class MainDz {
 
         orangeBox2.add(new Orange());
         System.out.println(orangeBox2.getWeight()+" - orangeBox2 .getWeight after add 1 fruit");
+        System.out.println(orangeBox1.getWeight()+" - orangeBox1.getWeight new");
 
         System.out.println(orangeBox1.compare(orangeBox2)+" - orangeBox1.compare(orangeBox2)");
 
