@@ -1,0 +1,1 @@
+shopdb.brand/nameBrand = 'GUESS'/nameBrand = 'PRADO'
