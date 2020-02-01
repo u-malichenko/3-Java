@@ -1,1 +1,7 @@
-mydb.students
+brand
+category
+type
+orders
+product
+ordersProducts
+students

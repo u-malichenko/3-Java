@@ -1,1 +1,1 @@
-shopdb.students/name = 'Игорь'
+students/name = 'Игорь'

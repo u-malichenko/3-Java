@@ -9,7 +9,6 @@ public class MainWorkDB {
 
     //для коректной работы нужно указать верный путь к файлам с указаниями
         private static String FILEPATH = "D:\\temp\\";
-
     private static Connection connection;
     private static Statement stmt;
     private static PreparedStatement pstmt;
@@ -18,63 +17,16 @@ public class MainWorkDB {
         try { //для подключения - отключения БД
             connect();
             System.out.println("Data Base connection");
-
-//            stmt.executeUpdate("INSERT INTO students (name, score) values('Bob1', 10)");
-//            Savepoint sp = connection.setSavepoint();
-//            stmt.executeUpdate("INSERT INTO students (name, score) values('Bob2', 20)");
-//            connection.rollback(sp);
-//            connection.setAutoCommit(true);
-//            stmt.executeUpdate("INSERT INTO students (name, score) values('Bob3', 30)");
-
             try {//для работы с файлами(содержат запросы к бд)
-                readFile("createTable.sql", "createTable");
-                readFile("dropTable.sql", "dropTable");
-                readFile("insert.sql", "insertDB");
-                readFile("delete.sql", "deleteDB");
-                readFile("update.sql", "updateDB");
-                readFile("select.sql", "selectDB");
-
+                readFile("dropTable.sql", "DROP TABLE %s;",1);//удалить старые таблицы, временный параметр
+                readFile("createTable.sql", "CREATE TABLE %s(%s);",2);
+                readFile("insert.sql", "INSERT INTO %s (%s) VALUES (%s);",3);
+                readFile("delete.sql", "DELETE FROM %s WHERE %s",2);
+                readFile("update.sql", "UPDATE %s SET %s WHERE %s",3);
+                readFile("select.sql", "SELECT * FROM %s WHERE %s",2);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-//            long t = System.currentTimeMillis();
-//            connection.setAutoCommit(false);
-//            pstmt = connection.prepareStatement("insert into students (name, score) values(?, ?)");
-//            for (int i = 0; i < 1000; i++) {
-//                pstmt.setString(1, "Bob" + (i + 1));
-//                pstmt.setInt(2, 20 * (i + 1));
-//                pstmt.addBatch();
-//            }
-//
-//            pstmt.executeBatch();
-//            connection.setAutoCommit(true);
-//            System.out.println(System.currentTimeMillis() - t);
-//
-//            connection.setAutoCommit(false);
-//            long t = System.currentTimeMillis();
-//            for (int i = 0; i < 1000; i++) {
-//                int a = i * 10;
-//                stmt.executeUpdate("insert into students (name, score) values ('unknow', " + a +")");
-////                if (i%100 == 0) {
-////                    connection.commit();
-////                }
-//            }
-//            //connection.commit();
-//            connection.setAutoCommit(true);
-//            System.out.println(System.currentTimeMillis() - t);
-
-//            ResultSetMetaData rsmd = rs.getMetaData();
-//
-//            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-//                System.out.println(rsmd.getColumnName(i) + " " + rsmd.getColumnType(i) + " " + rsmd.getTableName(i));
-//            }
-//
-//            while (rs.next()) {
-//                System.out.println(rs.getInt(1) + " " + rs.getString("name"));
-//            }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -83,122 +35,48 @@ public class MainWorkDB {
         }
     }
 
-    public static void readFile(String fileName, String type) throws FileNotFoundException {
-
+    public static void readFile(String fileName, String query, int limitSplit) throws FileNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(FILEPATH+fileName);
         Scanner scanner = new Scanner(fileInputStream);
-        switch (type) {
-            case "createTable": {
-                while (scanner.hasNext()) {
-                    String[] mass = scanner.nextLine().split("/", 2);
-                    createTable(mass[0], mass[1]);
-                }
-                break;
-            }
-            case "insertDB": {
-                while (scanner.hasNext()) {
-                    String[] mass = scanner.nextLine().split("/", 3);
-                    insertDB(mass[0], mass[1], mass[2]);
-                }
-                break;
-            }
-            case "dropTable": {
-                while (scanner.hasNext()) {
-                    String mass = scanner.nextLine();
-                    dropTable(mass);
-                }
-                break;
-            }
-            case "updateDB": {
-                while (scanner.hasNext()) {
-                    String[] mass = scanner.nextLine().split("/", 3);
-                    updateDB(mass[0], mass[1], mass[2]);
-                }
-                break;
-            }
-            case "deleteDB": {
-                while (scanner.hasNext()) {
-                    String[] mass = scanner.nextLine().split("/", 2);
-                    deleteDB(mass[0], mass[1]);
-                }
-                break;
-            }
-            case "selectDB": {
-                while (scanner.hasNext()) {
-                    String[] mass = scanner.nextLine().split("/", 3);
-                    selectDB(mass[0], mass[1], mass[2]);
-                    System.out.println("Select from table ");
-                }
-                break;
-            }
+
+        while (scanner.hasNext()) {
+            String[] mass = scanner.nextLine().split("/", limitSplit);
+            runQuery(query, mass);
         }
     }
 
     /**
      * Сделать методы для работы с БД (CREATE, UPDATE, DELETE, INSERT, SELECT)
      */
-    public static void dropTable(String tab) {
-        String sql = String.format("DROP TABLE %s;", tab);
+    public static void runQuery(String query, String[] data) {
+
+        String sql = formatQuery(query,data);
         try {
-            stmt.executeUpdate(sql);
-            System.out.println("Deleted table " + tab);
+            if(query.startsWith("SELECT")){
+                ResultSet rs = stmt.executeQuery(sql);
+                System.out.println(query + " " + data[0]);
+                formatResultSet(rs);
+                rs.close();
+            }else{
+                stmt.executeUpdate(sql);
+                System.out.println(query + " " + data[0]);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void createTable(String tab, String query) {
-        String sql = String.format("CREATE TABLE %s(,%s);", tab, query);
-
-        try {
-            stmt.executeUpdate(sql);
-            System.out.println("Created table " + tab);
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public static void formatResultSet(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            System.out.println(rs.getInt(1) + " " + rs.getString("name"));
         }
     }
 
-    public static void insertDB(String tab, String columns, String values) {
-        String sql = String.format("INSERT INTO %s (%s) VALUES (%s);", tab, columns, values);
-        try {
-            stmt.executeUpdate(sql);
-            System.out.println("Inserted table " + tab + " values: " + values);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void updateDB(String tab, String values, String were) {
-        String sql = String.format("UPDATE %s SET %s WHERE %s", tab, values, were);
-        try {
-            stmt.executeUpdate(sql);
-            System.out.println("Update row in table " + tab + " were: " + were);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectDB(String tab, String values, String were) {
-        String sql = String.format("SELECT %s FROM %s WHERE %s", values, tab, were);
-        try {
-            ResultSet rs = stmt.executeQuery(sql);
-            /**
-             * TODO РАзобрать результать запроса
-             */
-            rs.getString(2);
-            System.out.println("Select from table " + rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void deleteDB(String tab, String were) {
-        String sql = String.format("DELETE FROM %s WHERE %s", tab, were);
-        try {
-            stmt.executeUpdate(sql);
-            System.out.println("Deleted row in table " + tab + " were: " + were);
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public static String formatQuery(String query, String[] data){
+        switch (data.length){
+            case 3: return String.format(query, data[0], data[1], data[2]);
+            case 2: return String.format(query, data[0], data[1]);
+            default: return String.format(query, data[0]);
         }
     }
 

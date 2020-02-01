@@ -1,1 +1,1 @@
-shopdb.brand/nameBrand = 'GUESS'/ nameBrand ='PRADO'
+brand/nameBrand = 'GUESS'/ nameBrand ='PRADO'
