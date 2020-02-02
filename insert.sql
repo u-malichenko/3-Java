@@ -1,4 +1,4 @@
-brand/nameBrand/'Marc  O''Polo'
+brand/nameBrand/'Marc O''Polo'
 brand/nameBrand/'ALCOTT'
 brand/nameBrand/'GUESS'
 category/nameCategory,discount,aliasName/'Женская одежда',5,'women''s clothing'
@@ -20,7 +20,7 @@ ordersProducts/productId,ordersId,count/1,1,1
 ordersProducts/productId,ordersId,count/1,2,3
 ordersProducts/productId,ordersId,count/2,2,3
 ordersProducts/productId,ordersId,count/2,3,2
-students/name/>'Игорь'
-students/name/>'Тарас'
-students/name/>'Василий'
-students/name/>'Олег'
+students/name/'Игорь'
+students/name/'Тарас'
+students/name/'Василий'
+students/name/'Олег'

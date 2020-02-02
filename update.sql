@@ -1,1 +1,1 @@
-brand/nameBrand = 'GUESS'/ nameBrand ='PRADO'
+brand/nameBrand = 'PRADO'/ nameBrand ='GUESS'

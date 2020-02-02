@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class MainWorkDB {
 
     //для коректной работы нужно указать верный путь к файлам с указаниями
-        private static String FILEPATH = "D:\\temp\\";
+    private static String FILEPATH = "D:\\temp\\";
+
     private static Connection connection;
     private static Statement stmt;
-    private static PreparedStatement pstmt;
 
     public static void main(String[] args) {
-        try { //для подключения - отключения БД
+        try {
             connect();
             System.out.println("Data Base connection");
             try {//для работы с файлами(содержат запросы к бд)
@@ -35,10 +35,9 @@ public class MainWorkDB {
         }
     }
 
-    public static void readFile(String fileName, String query, int limitSplit) throws FileNotFoundException {
+    public static void readFile(String fileName, String query, int limitSplit) throws FileNotFoundException, SQLException {
         FileInputStream fileInputStream = new FileInputStream(FILEPATH+fileName);
         Scanner scanner = new Scanner(fileInputStream);
-
         while (scanner.hasNext()) {
             String[] mass = scanner.nextLine().split("/", limitSplit);
             runQuery(query, mass);
@@ -49,7 +48,6 @@ public class MainWorkDB {
      * Сделать методы для работы с БД (CREATE, UPDATE, DELETE, INSERT, SELECT)
      */
     public static void runQuery(String query, String[] data) {
-
         String sql = formatQuery(query,data);
         try {
             if(query.startsWith("SELECT")){
@@ -68,10 +66,11 @@ public class MainWorkDB {
 
     public static void formatResultSet(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            System.out.println(rs.getInt(1) + " " + rs.getString("name"));
+            System.out.println(rs.getInt(1) + " " + rs.getString(2));
         }
     }
-
+//жаль что в prepareStatement нельзя вставить ? на место таблицы ...
+// решил ограничить с помощью лимита элементов при сплите строки из файла
     public static String formatQuery(String query, String[] data){
         switch (data.length){
             case 3: return String.format(query, data[0], data[1], data[2]);
