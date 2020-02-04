@@ -23,15 +23,15 @@ public class MainDB {
 //            connection.setAutoCommit(true);
 //            stmt.executeUpdate("INSERT INTO students (name, score) values('Bob3', 30)");
 
-            try {
-                readFile();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                readFile();
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
 
 //            long t = System.currentTimeMillis();
 //            connection.setAutoCommit(false);
-//            pstmt = connection.prepareStatement("insert into students (name, score) values(?, ?)");
+//            pstmt = connection.prepareStatement("insert into ? (name, score) values(?, ?)");
 //            for (int i = 0; i < 1000; i++) {
 //                pstmt.setString(1, "Bob" + (i + 1));
 //                pstmt.setInt(2, 20 * (i + 1));
