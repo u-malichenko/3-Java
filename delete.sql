@@ -1,1 +1,0 @@
-students/name = 'Игорь'
