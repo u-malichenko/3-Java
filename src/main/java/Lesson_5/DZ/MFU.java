@@ -1,6 +1,4 @@
-package Lesson_5;
-
-import java.util.TimerTask;
+package Lesson_5.DZ;
 
 public class MFU {
 
