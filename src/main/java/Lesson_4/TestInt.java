@@ -1,5 +1,10 @@
 package Lesson_4;
 
+/**
+ * разные объекты в памяти интеджер прибавляя +1 к себе создает новый объект в памяти кучаи соответственнно новую ссылку и синхронизация падает
+ * если не изменять интеджер то тогда все работает последовательно
+ * иначе - если н открыта они работают хаотично
+ */
 public class TestInt {
     private static Integer n = new Integer(300);
     public static void main(String[] args) {
@@ -54,14 +59,11 @@ public class TestInt {
         DeadThreadTwo deadThreadTwo = new DeadThreadTwo();
         deadThreadTwo.start();
     }
-
-
-
-
     static Object lock1 = new Object();
     static Object lock2 = new Object();
-
-
+    /**
+     * взаимная блокировка
+     */
     static class DeadThreadOne extends Thread {
         @Override
         public void run() {

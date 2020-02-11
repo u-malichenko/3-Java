@@ -1,7 +1,5 @@
 package Lesson_4;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 public class Store {
     public static void main(String[] args) {
         Store store = new Store();

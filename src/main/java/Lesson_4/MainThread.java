@@ -1,6 +1,7 @@
 package Lesson_4;
 
-public class MainThread {
+public class
+MainThread {
     public static void main(String[] args) {
 
         Test t1 = new Test();
