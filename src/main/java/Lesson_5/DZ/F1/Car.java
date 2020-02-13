@@ -1,6 +1,6 @@
 package Lesson_5.DZ.F1;
 
-public class Car implements Runnable {
+public class Car implements Runnable  {
 
     private static int CARS_COUNT;
     static {
@@ -24,11 +24,15 @@ public class Car implements Runnable {
             Thread.sleep(500 + (int)(Math.random() * 800));
             System.out.println(this.name + " готов");
             MainClass.BARRIER.await();
+            for (int i = 0; i < race.getStages().size(); i++) {
+                race.getStages().get(i).go(this);
+            }
+            MainClass.BARRIER.await();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void F1 (){
+    public void call (){
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }

@@ -20,23 +20,24 @@ public class MainClass {
         Race race = new Race(new Road(60), new Tunnel(), new Road(40)); //набор препятствий
         Car[] cars = new Car[CARS_COUNT]; //набор машин
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
-
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new Car(race, 20 + (int) (Math.random() * 10)); //создание машины  и установка рандомной скорости20+-10
-            POOL.execute( cars[i]);
-        }
         try {
+            for (int i = 0; i < cars.length; i++) {
+                cars[i] = new Car(race, 20 + (int) (Math.random() * 10)); //создание машины  и установка рандомной скорости20+-10
+                POOL.execute( cars[i]);
+            }
+
             MainClass.BARRIER.await();
+            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+
+            MainClass.BARRIER.await();
+            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+            POOL.shutdown();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (BrokenBarrierException e) {
             e.printStackTrace();
         }
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-        for (int i = 0; i < cars.length; i++) {
-        }
-        POOL.shutdown();
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
 }
 
