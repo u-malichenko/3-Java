@@ -13,70 +13,72 @@ public class MainThread5 {
                 return new Thread(r);
             }
         });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(1);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(2);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(3);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(4);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(5);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(6);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(7);
-            }
-        });
-
-        pool.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName());
-                System.out.println(8);
-            }
-        });
+        for (int i = 0; i < 6; i++) {
+            int finalI = i;
+            pool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getName());
+                    System.out.println(finalI);
+                }
+            });
+        }
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(2);
+//            }
+//        });
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(3);
+//            }
+//        });
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(4);
+//            }
+//        });
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(5);
+//            }
+//        });
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(6);
+//            }
+//        });
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(7);
+//            }
+//        });
+//
+//        pool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName());
+//                System.out.println(8);
+//            }
+//        });
 
         pool.shutdownNow();
     }
