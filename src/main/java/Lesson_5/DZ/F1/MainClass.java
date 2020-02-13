@@ -7,16 +7,14 @@ import java.util.concurrent.Executors;
 
 public class MainClass {
     public static final int CARS_COUNT = 4;
+    private static final ExecutorService POOL = Executors.newFixedThreadPool(CARS_COUNT);
+    public static CyclicBarrier BARRIER = new CyclicBarrier(CARS_COUNT+1);
 
     public static int getCarsCount() {
         return CARS_COUNT;
     }
 
-    private static final ExecutorService POOL = Executors.newFixedThreadPool(CARS_COUNT);
-    public static CyclicBarrier BARRIER = new CyclicBarrier(CARS_COUNT+1);
-
     public static void main(String[] args) {
-
         Race race = new Race(new Road(60), new Tunnel(), new Road(40)); //набор препятствий
         Car[] cars = new Car[CARS_COUNT]; //набор машин
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");

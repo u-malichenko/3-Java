@@ -94,27 +94,27 @@ public class MainSchedule {
 //        }
 //        service.shutdown();
 
-        CountDownLatch cdl = new CountDownLatch(10);
-
-        for (int i = 0; i < 10; i++) {
-            int w = i;
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println(w + " -1");
-                    try {
-                        Thread.sleep((int)Math.random() * 300000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(w + " -2");
-                    cdl.countDown();
-                }
-            }).start();
-        }
-        cdl.await();
-
-        System.out.println("END!");
+//        CountDownLatch cdl = new CountDownLatch(10);
+//
+//        for (int i = 0; i < 10; i++) {
+//            int w = i;
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    System.out.println(w + " -1");
+//                    try {
+//                        Thread.sleep((int)Math.random() * 300000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.println(w + " -2");
+//                    cdl.countDown();
+//                }
+//            }).start();
+//        }
+//        cdl.await();
+//
+//        System.out.println("END!");
 
 //        CyclicBarrier cb = new CyclicBarrier(10);
 //
