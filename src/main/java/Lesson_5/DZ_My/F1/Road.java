@@ -1,4 +1,4 @@
-package Lesson_5.DZ.F1;
+package Lesson_5.DZ_My.F1;
 
 public class Road extends Stage {
     public Road(int length) {

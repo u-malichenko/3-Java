@@ -1,10 +1,9 @@
-package Lesson_5.DZ.F1;
+package Lesson_5.DZ_My.F1;
 
 import java.util.concurrent.Semaphore;
 
 public class Tunnel extends Stage {
     Semaphore carsLimit;
-
     public Tunnel(int carsCount) {
         this.length = 80;
         this.description = "Тоннель " + length + " метров";
@@ -14,7 +13,6 @@ public class Tunnel extends Stage {
     @Override
     public void go(Car c) {
         try {
-
             try {
                 System.out.println(c.getName() + " готовится к этапу(ждет): " + description);
                 carsLimit.acquire();
@@ -24,8 +22,8 @@ public class Tunnel extends Stage {
                 e.printStackTrace();
             } finally {
                 System.out.println(c.getName() + " закончил этап: " + description);
+                carsLimit.release();
             }
-            carsLimit.release();
         } catch (Exception e) {
             e.printStackTrace();
         }

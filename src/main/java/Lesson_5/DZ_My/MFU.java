@@ -1,4 +1,4 @@
-package Lesson_5.DZ;
+package Lesson_5.DZ_My;
 
 public class MFU {
     Object printLock = new Object();
