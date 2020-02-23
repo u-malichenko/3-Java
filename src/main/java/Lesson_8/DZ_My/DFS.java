@@ -80,8 +80,7 @@ class TopObject {
                 this.child = new ArrayList<>();
                 i.child.add(this);
                 return ;
-            } else if (i.child.isEmpty())
-                addChild(i.child);
+            } else addChild(i.child); //if (i.child.isEmpty())
         }
     }
 
