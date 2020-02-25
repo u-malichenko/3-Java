@@ -2,14 +2,13 @@ package Lesson_7.DZ_My_RecMat;
 
 import java.util.Arrays;
 
-public class BildMatrix {
+public class BuildMatrix {
     public static void main(String[] args) {
         int w = 5;
-        int h = 5; //Сюда размер матрицы
-        int n = 5;
-        int[][] matrix = new int[n][n];
-        for (int i = 0; i < h; i++) {  //пока i меньше высоты матрицы
-            for (int j = 0; j < w; j++) { //пока j менше ширины мартицы
+        int h = 5;
+        int[][] matrix = new int[w][h];
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
                 matrix[i][j] = s(w, h, j, i) + 1;
             }
         }
